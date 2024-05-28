@@ -28,6 +28,7 @@
             pkgs.python3Packages.django
             pkgs.python3Packages.markdown
             pkgs.python3Packages.openai
+            pkgs.ruff
             pkgs.tailwindcss
           ];
         };
