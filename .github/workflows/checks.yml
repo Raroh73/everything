@@ -19,3 +19,15 @@ jobs:
         uses: cachix/install-nix-action@v27
       - name: Run Ruff
         run: nix develop --command ruff check
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4.1.6
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+      - name: Run Test
+        run: nix develop --command python manage.py test
