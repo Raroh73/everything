@@ -7,7 +7,7 @@ class SimpleTest(unittest.TestCase):
     def setUp(self):
         self.client = Client()
 
-    def get_index(self):
+    def test_get_index(self):
         response = self.client.get("/")
 
         self.assertEqual(response.status_code, 200)
