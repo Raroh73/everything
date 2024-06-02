@@ -1,9 +1,7 @@
-import unittest
-
-from django.test import Client
+from django.test import Client, TestCase
 
 
-class SimpleTest(unittest.TestCase):
+class Test(TestCase):
     def setUp(self):
         self.client = Client()
 
