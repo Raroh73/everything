@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = os.environ.get("EVERYTHING_DEBUG", False)
 
-SECRET_KEY = os.environ.get("EVERYTHING_SECRET_KEY")
+SECRET_KEY = os.environ.get("EVERYTHING_SECRET_KEY", "django-insecure-test123")
 
 host = os.environ.get("EVERYTHING_HOST")
 if host:
