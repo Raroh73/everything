@@ -24,6 +24,7 @@
           packages = [
             pkgs.python3
             pkgs.python3Packages.channels
+            pkgs.python3Packages.coverage
             pkgs.python3Packages.daphne
             pkgs.python3Packages.django
             pkgs.python3Packages.markdown

@@ -1,0 +1,33 @@
+name: Generate Coverage
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  coverage:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4.1.6
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+      - name: Generate Coverage
+        run: nix develop --command coverage run --source . manage.py test
+      - name: Generate HTML
+        run: nix develop --command coverage html --directory coverage
+      - name: Setup Pages
+        uses: actions/configure-pages@v5.0.0
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3.0.1
+        with:
+          path: "coverage"
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4.0.5
