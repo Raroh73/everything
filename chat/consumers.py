@@ -2,21 +2,16 @@ import json
 import uuid
 
 import markdown
+import ollama
 from channels.generic.websocket import WebsocketConsumer
 from django.conf import settings
 from django.template.loader import render_to_string
-from openai import OpenAI
 
 from . import models
 
 
 class ChatConsumer(WebsocketConsumer):
     def connect(self):
-        self.openai_client = OpenAI(
-            base_url=settings.OPENAI_URL,
-            api_key=settings.OPENAI_KEY,
-        )
-
         self.chat = models.Chat()
         self.chat.save()
 
@@ -47,15 +42,15 @@ class ChatConsumer(WebsocketConsumer):
 
         self.send(text_data=system_message_html)
 
-        openai_response = self.openai_client.chat.completions.create(
+        response = ollama.chat(
             messages=self.chat.messages,
             stream=True,
             model=settings.MODEL,
         )
 
         message = ""
-        for chunk in openai_response:
-            message_chunk = chunk.choices[0].delta.content
+        for chunk in response:
+            message_chunk = chunk["message"]["content"]
             if message_chunk is not None:
                 message += message_chunk
                 self.send(

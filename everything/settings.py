@@ -89,6 +89,4 @@ STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "static"
 STATICFILES_DIRS = [BASE_DIR / "staticfiles"]
 
-OPENAI_URL = os.environ.get("EVERYTHING_OPENAI_URL")
-OPENAI_KEY = os.environ.get("EVERYTHING_OPENAI_KEY")
 MODEL = os.environ.get("EVERYTHING_MODEL")
