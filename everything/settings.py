@@ -89,4 +89,4 @@ STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "static"
 STATICFILES_DIRS = [BASE_DIR / "staticfiles"]
 
-MODEL = os.environ.get("EVERYTHING_MODEL")
+MODEL = os.environ.get("EVERYTHING_MODEL", "tinyllama")
