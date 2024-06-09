@@ -8,7 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: read
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4.1.6
@@ -22,7 +21,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: read
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4.1.6
@@ -34,7 +32,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: read
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4.1.6
