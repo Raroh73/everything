@@ -14,8 +14,6 @@ jobs:
         uses: actions/checkout@v4.1.6
       - name: Install Ollama
         run: curl -fsSL https://ollama.com/install.sh | sh
-      - name: Run Ollama
-        run: ollama serve
       - name: Install Nix
         uses: cachix/install-nix-action@v27
       - name: Run Check
@@ -42,8 +40,6 @@ jobs:
         uses: actions/checkout@v4.1.6
       - name: Install Ollama
         run: curl -fsSL https://ollama.com/install.sh | sh
-      - name: Run Ollama
-        run: ollama serve
       - name: Install Nix
         uses: cachix/install-nix-action@v27
       - name: Run Test
@@ -63,8 +59,6 @@ jobs:
         uses: actions/checkout@v4.1.6
       - name: Install Ollama
         run: curl -fsSL https://ollama.com/install.sh | sh
-      - name: Run Ollama
-        run: ollama serve
       - name: Install Nix
         uses: cachix/install-nix-action@v27
       - name: Generate Coverage
