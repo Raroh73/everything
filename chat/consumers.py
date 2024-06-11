@@ -4,7 +4,6 @@ import markdown
 import ollama
 from channels.generic.websocket import WebsocketConsumer
 from django.conf import settings
-from django.template.loader import render_to_string
 
 from . import models
 
@@ -20,11 +19,6 @@ class ChatConsumer(WebsocketConsumer):
         self.chat.refresh_from_db()
 
         message_text = json.loads(text_data)["message"]
-
-        user_message_html = render_to_string(
-            "message.html", {"message_text": message_text}
-        )
-        self.send(text_data=user_message_html)
 
         self.chat.messages.append({"role": "user", "content": message_text})
         self.chat.save()
