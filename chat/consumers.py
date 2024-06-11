@@ -1,5 +1,4 @@
 import json
-import uuid
 
 import markdown
 import ollama
@@ -30,18 +29,6 @@ class ChatConsumer(WebsocketConsumer):
         self.chat.messages.append({"role": "user", "content": message_text})
         self.chat.save()
 
-        message_id = f"message-{uuid.uuid4().hex}"
-
-        system_message_html = render_to_string(
-            "message.html",
-            {
-                "message_text": "",
-                "message_id": message_id,
-            },
-        )
-
-        self.send(text_data=system_message_html)
-
         response = ollama.chat(
             messages=self.chat.messages,
             stream=True,
@@ -54,7 +41,13 @@ class ChatConsumer(WebsocketConsumer):
             if message_chunk is not None:
                 message += message_chunk
                 self.send(
-                    text_data=f'<div id="{message_id}" hx-swap-oob="innerHTML">{markdown.markdown(message, extensions=["codehilite", "fenced_code"])}</div>'
+                    text_data=json.dumps(
+                        {
+                            "message": markdown.markdown(
+                                message, extensions=["fenced_code"]
+                            )
+                        }
+                    )
                 )
 
         self.chat.messages.append({"role": "assistant", "content": message})
