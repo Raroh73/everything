@@ -28,6 +28,7 @@
             pkgs.python3Packages.daphne
             pkgs.python3Packages.django
             pkgs.python3Packages.markdown
+            pkgs.python3Packages.nh3
             pkgs.python3Packages.ollama
             pkgs.ruff
             pkgs.tailwindcss

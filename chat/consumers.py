@@ -1,6 +1,7 @@
 import json
 
 import markdown
+import nh3
 import ollama
 from channels.generic.websocket import WebsocketConsumer
 from django.conf import settings
@@ -37,8 +38,8 @@ class ChatConsumer(WebsocketConsumer):
                 self.send(
                     text_data=json.dumps(
                         {
-                            "message": markdown.markdown(
-                                message, extensions=["fenced_code"]
+                            "message": nh3.clean(
+                                markdown.markdown(message, extensions=["fenced_code"])
                             )
                         }
                     )
