@@ -11,7 +11,7 @@ jobs:
       pull-requests: read
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4.1.6
+        uses: actions/checkout@v4.1.7
       - name: Install Ollama
         run: curl -fsSL https://ollama.com/install.sh | sh
       - name: Install Nix
@@ -25,7 +25,7 @@ jobs:
       pull-requests: read
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4.1.6
+        uses: actions/checkout@v4.1.7
       - name: Install Nix
         uses: cachix/install-nix-action@v27
       - name: Run Ruff
@@ -37,7 +37,7 @@ jobs:
       pull-requests: read
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4.1.6
+        uses: actions/checkout@v4.1.7
       - name: Install Ollama
         run: curl -fsSL https://ollama.com/install.sh | sh
       - name: Install Nix
