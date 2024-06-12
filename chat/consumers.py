@@ -21,6 +21,17 @@ class ChatConsumer(WebsocketConsumer):
 
         message_text = json.loads(text_data)["message"]
 
+        id = f"message-{len(self.chat.messages)}"
+
+        self.send(
+            text_data=json.dumps(
+                {
+                    "id": id,
+                    "content": nh3.clean(message_text),
+                }
+            )
+        )
+
         self.chat.messages.append({"role": "user", "content": message_text})
         self.chat.save()
 
@@ -30,6 +41,7 @@ class ChatConsumer(WebsocketConsumer):
             model=settings.MODEL,
         )
 
+        id = f"message-{len(self.chat.messages)}"
         message = ""
         for chunk in response:
             message_chunk = chunk["message"]["content"]
@@ -38,9 +50,10 @@ class ChatConsumer(WebsocketConsumer):
                 self.send(
                     text_data=json.dumps(
                         {
-                            "message": nh3.clean(
+                            "id": id,
+                            "content": nh3.clean(
                                 markdown.markdown(message, extensions=["fenced_code"])
-                            )
+                            ),
                         }
                     )
                 )
