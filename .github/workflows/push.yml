@@ -28,33 +28,33 @@ jobs:
         uses: cachix/install-nix-action@v27
       - name: Run Test
         run: nix develop --command hatch run test:test
-  coverage:
-    runs-on: ubuntu-latest
-    needs: [ruff, test]
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4.1.7
-      - name: Install Ollama
-        run: curl -fsSL https://ollama.com/install.sh | sh
-      - name: Install Nix
-        uses: cachix/install-nix-action@v27
-      - name: Generate Coverage
-        run: nix develop --command hatch run test:cov
-      - name: Generate HTML
-        run: nix develop --command hatch run test:html
-      - name: Setup Pages
-        uses: actions/configure-pages@v5.0.0
-      - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v3.0.1
-        with:
-          path: "coverage"
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4.0.5
+  # coverage:
+  #   runs-on: ubuntu-latest
+  #   needs: [ruff, test]
+  #   permissions:
+  #     contents: read
+  #     pages: write
+  #     id-token: write
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deployment.outputs.page_url }}
+  #   steps:
+  #     - name: Checkout Repository
+  #       uses: actions/checkout@v4.1.7
+  #     - name: Install Ollama
+  #       run: curl -fsSL https://ollama.com/install.sh | sh
+  #     - name: Install Nix
+  #       uses: cachix/install-nix-action@v27
+  #     - name: Generate Coverage
+  #       run: nix develop --command hatch run test:cov
+  #     - name: Generate HTML
+  #       run: nix develop --command hatch run test:html
+  #     - name: Setup Pages
+  #       uses: actions/configure-pages@v5.0.0
+  #     - name: Upload Artifact
+  #       uses: actions/upload-pages-artifact@v3.0.1
+  #       with:
+  #         path: "coverage"
+  #     - name: Deploy to GitHub Pages
+  #       id: deployment
+  #       uses: actions/deploy-pages@v4.0.5
