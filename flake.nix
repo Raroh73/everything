@@ -16,20 +16,22 @@
       system:
       let
         pkgs = import nixpkgs { inherit system; };
+        hatch = pkgs.hatch.overrideAttrs (oa: {
+          disabledTests = oa.disabledTests ++ [
+            "test_field_complex"
+            "test_field_readme"
+            "test_field_string"
+            "test_plugin_dependencies_unmet"
+          ];
+        });
       in
       {
         devShells.default = pkgs.mkShell {
           name = "everything";
 
           packages = [
+            hatch
             pkgs.python3
-            pkgs.python3Packages.channels
-            pkgs.python3Packages.coverage
-            pkgs.python3Packages.daphne
-            pkgs.python3Packages.django
-            pkgs.python3Packages.markdown
-            pkgs.python3Packages.nh3
-            pkgs.python3Packages.ollama
             pkgs.ruff
             pkgs.tailwindcss
           ];
