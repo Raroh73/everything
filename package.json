@@ -1,0 +1,29 @@
+{
+  "name": "everything",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "vite:dev": "vite dev",
+    "vite:build": "vite build",
+    "vite:preview": "vite preview",
+    "prepare": "svelte-kit sync",
+    "svelte:check": "svelte-kit sync && svelte-check",
+    "biome:ci": "biome ci",
+    "biome:format": "biome format",
+    "biome:lint": "biome lint"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@sveltejs/adapter-node": "5.2.12",
+    "@sveltejs/kit": "2.18.0",
+    "@sveltejs/vite-plugin-svelte": "5.0.3",
+    "svelte": "5.22.2",
+    "svelte-check": "4.1.4",
+    "typescript": "5.8.2",
+    "vite": "6.2.0"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "3.3.3"
+  }
+}
